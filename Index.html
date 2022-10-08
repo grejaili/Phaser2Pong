@@ -1,28 +1,22 @@
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8"/>
     <title>Pong Test</title>
-
     <script type="text/javascript" src="phaser.min.js"></script>
     <script type="text/javascript" src="Player.js"></script>
-
     <script type="text/javascript" src="Ball.js"></script>
-
     <script type="text/javascript" src="UI.js"></script>
-
-
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
+    <script type="text/javascript" src = "GameManager.js"></script>
 </head>
 <body>
 
 <script type="text/javascript">
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update})
-    var cursors;
+    const game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update})
+    let cursors;
+    let spaceKey;
+    let player2Up;
+    let player2Down;
 
     function preload() {
 
@@ -31,35 +25,17 @@
 
     }
 
-
     function create() {
-        ball = create_ball(game.world.centerX, game.world.centerY);
-        CreatePlayers();
-        CreateUI();
-        cursors = game.input.keyboard.createCursorKeys();
-       // game.input.onDown.add(launch_ball, this);
+        InitializeVariables();
+
     }
 
     function update() {
+        StartGame();
         CheckCollisions();
         UpdatePlayers();
-
-
-
-        if (ball.body.blocked.left) {
-            console.log("player 2 score!");
-        }
-        if (ball.body.blocked.right) {
-            console.log("player 1 score!");
-        }
     }
 
-
-    function CheckCollisions() {
-
-        game.physics.arcade.collide(player1, ball);
-        game.physics.arcade.collide(player2, ball);
-    }
 
 
 </script>
