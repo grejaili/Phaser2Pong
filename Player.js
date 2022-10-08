@@ -24,26 +24,28 @@ function UpdatePlayers() {
     tickPlayer2();
 }
 
-function tickPlayer1() {
+function tickPlayer2() {
+
+
     if (cursors.up.isDown) {
-        Player1.body.velocity.y = -playerVelocity;
+        player2.body.velocity.y = -playerVelocity;
     } else if (cursors.down.isDown) {
+        player2.body.velocity.y = playerVelocity;
+    } else {
+        player2.body.velocity.y = 0;
+    }
+
+
+}
+
+function tickPlayer1() {
+
+    if (player2Up.isDown) {
+        Player1.body.velocity.y = -playerVelocity;
+    } else if (player2Down.isDown){
         Player1.body.velocity.y = playerVelocity;
     } else {
         Player1.body.velocity.y = 0;
     }
 
-
-    //    control_paddle(player1, game.input.y);
-}
-
-function tickPlayer2() {
-
-    if (player2Up.isDown) {
-        player2.body.velocity.y = -playerVelocity;
-    } else if (player2Down.isDown){
-        player2.body.velocity.y = playerVelocity;
-    } else {
-        player2.body.velocity.y = 0;
-    }
 }

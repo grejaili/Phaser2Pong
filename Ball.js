@@ -11,12 +11,19 @@ function create_ball(x, y) {
 }
 
 function LaunchBall() {
-    ball.body.velocity.x = -ball_velocity;
-    ball.body.velocity.y = ball_velocity;
+    let randomNumber = Phaser.Math.random(-1, 1);
+    if(randomNumber > 0)
+        randomNumber= 1;
+    else
+        randomNumber = -1;
+
+    ball.body.velocity.x = ball_velocity * randomNumber;
+    ball.body.velocity.y = ball_velocity * randomNumber;
 }
 
 function BallReset() {
     ball.x = game.world.centerX;
     ball.y = game.world.centerY;
     ball.body.velocity.setTo(0, 0);
+
 }

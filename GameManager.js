@@ -2,6 +2,7 @@ let score1;
 let score2;
 let VictoryPoints = 7;
 let gameStarted = false;
+let ballLauncherTimer = 4;
 
 
 function InitializeVariables() {
@@ -14,10 +15,22 @@ function InitializeVariables() {
 }
 
 
+function ResetGame()
+{
+    score1 = 0;
+    score2 = 0;
+    gameStarted = false;
+    winnerText.visible = false;
+    startGameUI.visible = true;
+    ScoreTextUpdate(score2Txt, score2);
+    ScoreTextUpdate(score1Txt, score1);
+}
+
 function StartGame() {
     if (spaceKey.isDown && gameStarted === false) {
         gameStarted = true;
         LaunchBall();
+        startGameUI.visible = false;
     }
 }
 
@@ -52,10 +65,14 @@ function CheckScored() {
 
 function CheckWin() {
     if (score1 === VictoryPoints) {
+        WinnerTextActive("Player 1 wins");
 
+        return;
     }
     if (score2 === VictoryPoints) {
-
+        WinnerTextActive("Player 2 wins");
+        return
     }
 
+    game.time.events.add(Phaser.Timer.SECOND * ballLauncherTimer, LaunchBall, this);
 }

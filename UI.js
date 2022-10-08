@@ -1,6 +1,8 @@
-var score1Txt;
-var score2Txt
+let score1Txt;
+let score2Txt
+let winnerText;
 
+let startGameUI;
 
 function CreateUI()
 {
@@ -15,7 +17,31 @@ function CreateUI()
         fill: "#ffffff",
         align: "center"
     });
+
+    winnerText = game.add.text(game.world.width/2 - 128,game.world.height/2,"Victory Player",{
+        font:"64px Gabriella",
+        fill: "#ffffff",
+        align: "center"
+    });
+
+    startGameUI = game.add.text(game.world.width/2 - 128,game.world.height/2,"Press Bar to Start",{
+        font:"64px Gabriella",
+        fill: "#ffffff",
+        align: "center"
+    });
+
+
+    winnerText.visible = false;
 }
+
+
+function WinnerTextActive(newText)
+{
+    winnerText.visible = true;
+    winnerText.text = newText;
+    game.time.events.add(Phaser.Timer.SECOND * 3, ResetGame, this);
+}
+
 
 function ScoreTextUpdate(UIText,newScore)
 {
